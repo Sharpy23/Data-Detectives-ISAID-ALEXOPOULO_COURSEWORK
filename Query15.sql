@@ -1,7 +1,6 @@
-SELECT 
-    e.name AS lastname, firstname 
-    d.name AS mgrid
-FROM worker e
-LEFT JOIN assign a ON e.empid = a.empid
-JOIN worker d ON e.departmentname = d.departmentname AND d.empid = d.departmentname
-WHERE a.projno IS NULL;
+SELECT  p.projno,
+COUNT(DISTINCT a.empid) AS num_workers,
+SUM(a.hoursassigned) AS total_hours
+FROM project p
+INNER JOIN assign a ON p.projno = a.projno 
+GROUP BY p.projno;
