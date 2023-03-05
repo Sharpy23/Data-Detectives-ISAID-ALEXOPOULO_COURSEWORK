@@ -9,4 +9,4 @@ VALUES (1032, 9898);
 INSERT INTO Assign (projno, empid)
 VALUES (1043, 1);
 INSERT INTO Assign (projno, empid)
-VALUES (1032, 1);
+VALUES (1032, 1); 
