@@ -1,4 +1,5 @@
 ALTER TABLE Project ADD numEmployeesAssigned INT;
+
 UPDATE Project
 SET numEmployeesAssigned = (
     SELECT COUNT(DISTINCT empid)
