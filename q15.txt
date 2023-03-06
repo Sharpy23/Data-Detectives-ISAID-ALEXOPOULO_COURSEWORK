@@ -1,6 +1,5 @@
-SELECT  p.projno,
-COUNT(DISTINCT a.empid) AS num_workers,
-SUM(a.hoursassigned) AS total_hours
-FROM project p
-INNER JOIN assign a ON p.projno = a.projno 
-GROUP BY p.projno;
+SELECT a.firstName || ' ' || a.lastName AS "EMPLOYEE", a.departmentid, d.mgrid, b.projno 
+FROM Worker a 
+INNER JOIN Assign b ON a.empId= b.empId 
+INNER JOIN DEPT d ON a.departmentid=d.departmentid 
+WHERE b.projno IS NULL; 
