@@ -1,1 +1,33 @@
 
+
+CREATE OR REPLACE TRIGGER update_numEmployeesAssigned 
+AFTER INSERT OR UPDATE OR DELETE ON assign 
+FOR EACH ROW 
+BEGIN 
+  IF INSERTING OR UPDATING THEN 
+    UPDATE project 
+    SET numemployeesassigned = numemployeesassigned + 1 
+    WHERE projno = :new.projno; 
+  END IF; 
+  IF DELETING OR UPDATING THEN 
+    UPDATE project 
+    SET numemployeesassigned = numemployeesassigned - 1 
+    WHERE projno = :old.projno; 
+  END IF; 
+END; 
+
+
+
+-- To check if the trigger works for insert update and delete
+SELECT * FROM ASSIGN;
+SELECT * FROM PROJECT;
+
+INSERT INTO Assign (projno, empid)
+VALUES (1005, 1);
+
+UPDATE Assign
+SET projno= 1001
+WHERE projno = 1005 AND empid= 1;
+
+DELETE FROM ASSIGN
+WHERE projno = 1001 AND empid= 1;
